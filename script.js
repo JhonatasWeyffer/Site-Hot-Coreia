@@ -674,3 +674,9 @@ window.addEventListener('DOMContentLoaded', () => {
         observer.observe(item);
     });
 });
+
+
+
+const devs = [
+  { name: "", link: "" },
+];
