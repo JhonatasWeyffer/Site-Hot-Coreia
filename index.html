@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Coreia - Hot Dogs Coreanos Especiais</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/logo.png">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="/img/logo.png" alt="Logo Hot Coreia">
+                    </div>
+                    <div class="logo-text">
+                        <h1>HOT COREIA</h1>
+                        <p>Hot Dogs Coreanos Especiais</p>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="#inicio" class="nav-link active">Início</a></li>
+                        <li><a href="#cardapio" class="nav-link">Cardápio</a></li>
+                        <li><a href="#combos" class="nav-link">Combos</a></li>
+                        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                        <li><a href="#contato" class="nav-link">Contato</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <button class="btn-pedido" id="btnPedido">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Fazer Pedido</span>
+                            <span class="cart-count">0</span>
+                        </button>
+                        <button class="menu-toggle" id="menuToggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">O Sabor da Coreia no Seu Hot Dog!</h2>
+                    <p class="hero-subtitle">Experiência única com ingredientes tradicionais coreanos e toque especial</p>
+                    <div class="hero-buttons">
+                        <a href="#cardapio" class="btn btn-primary">Ver Cardápio</a>
+                        <a href="#combos" class="btn btn-secondary">Combos Especiais</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hotdog-display">
+                        <i class="fas fa-hotdog"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Cardápio -->
+    <section class="cardapio-section" id="cardapio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nosso Cardápio</h2>
+                <p class="section-subtitle">Hot dogs inspirados na culinária coreana</p>
+            </div>
+            
+            <div class="cardapio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="tradicional">Tradicionais</button>
+                <button class="filter-btn" data-filter="especial">Especiais</button>
+                <button class="filter-btn" data-filter="picante">Picantes</button>
+                <button class="filter-btn" data-filter="molho">Molhos</button>
+            </div>
+            
+            <div class="cardapio-grid">
+                <!-- Item 1 -->
+                <div class="cardapio-item" data-category="tradicional">
+                    <div class="item-image">
+                        <i class="fas fa-hotdog"></i>
+                        <span class="item-badge">Mais Vendido</span>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Coreano Tradicional</h3>
+                        <p class="item-description">Pão macio, salsicha especial, kimchi, cebolinha e molho gochujang</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 18,90</span>
+                            <button class="btn-add" data-id="1">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="cardapio-item" data-category="picante">
+                    <div class="item-image">
+                        <i class="fas fa-pepper-hot"></i>
+                        <span class="item-badge item-hot">Picante</span>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Fire Seoul</h3>
+                        <p class="item-description">Pão com gergelim, duas salsichas, pimenta coreana, queijo e molho especial fire</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 22,50</span>
+                            <button class="btn-add" data-id="2">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="cardapio-item" data-category="especial">
+                    <div class="item-image">
+                        <i class="fas fa-crown"></i>
+                        <span class="item-badge item-premium">Premium</span>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Dragon Roll</h3>
+                        <p class="item-description">Hot dog enrolado, cream cheese, cebola crispy, alga nori e molho teriyaki</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 24,90</span>
+                            <button class="btn-add" data-id="3">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="cardapio-item" data-category="tradicional">
+                    <div class="item-image">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Cheese Bulgogi</h3>
+                        <p class="item-description">Carne bulgogi, queijo derretido, cebola caramelizada e molho especial</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 21,90</span>
+                            <button class="btn-add" data-id="4">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="cardapio-item" data-category="picante">
+                    <div class="item-image">
+                        <i class="fas fa-fire"></i>
+                        <span class="item-badge item-hot">Super Picante</span>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Volcano Kimchi</h3>
+                        <p class="item-description">Kimchi extra picante, salsicha defumada, pimenta habanero e queijo</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 20,50</span>
+                            <button class="btn-add" data-id="5">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="cardapio-item" data-category="especial">
+                    <div class="item-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">K-Pop Special</h3>
+                        <p class="item-description">Mix de ingredientes coreanos, batata palha, ovo de codorna e molhos especiais</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 25,90</span>
+                            <button class="btn-add" data-id="6">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-fire"></i>
+                        <span class="item-badge item-hot">Picante</span>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Molho Gochujang</h3>
+                        <p class="item-description">Molho picante coreano tradicional, fermentado</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 5,90</span>
+                            <button class="btn-add" data-id="7">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Molho Buldak</h3>
+                        <p class="item-description">Molho super picante estilo fogo coreano</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 6,50</span>
+                            <button class="btn-add" data-id="8">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Molho Cheese</h3>
+                        <p class="item-description">Molho cremoso de queijo estilo coreano</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 5,50</span>
+                            <button class="btn-add" data-id="9">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 10 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-garlic"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Maionese de Alho</h3>
+                        <p class="item-description">Maionese temperada com alho fresco</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 4,90</span>
+                            <button class="btn-add" data-id="10">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 11 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Molho Suave</h3>
+                        <p class="item-description">Molho leve para quem prefere menos picante</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 4,50</span>
+                            <button class="btn-add" data-id="11">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 12 -->
+                <div class="cardapio-item" data-category="molho">
+                    <div class="item-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Molho Teriyaki</h3>
+                        <p class="item-description">Molho agridoce estilo japonês-coreano</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 5,90</span>
+                            <button class="btn-add" data-id="12">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Combos -->
+    <section class="combos-section" id="combos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Combos Especiais</h2>
+                <p class="section-subtitle">Aproveite nossas promoções</p>
+            </div>
+            
+            <div class="combos-grid">
+                <!-- Combo 1 -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3 class="combo-title">Combo Seoul</h3>
+                        <div class="combo-tag">Mais Popular</div>
+                    </div>
+                    <div class="combo-content">
+                        <ul class="combo-items">
+                            <li><i class="fas fa-check"></i> 1 Coreano Tradicional</li>
+                            <li><i class="fas fa-check"></i> 1 Bebida (refri 350ml)</li>
+                            <li><i class="fas fa-check"></i> 1 Porção de batata frita</li>
+                        </ul>
+                        <div class="combo-price">
+                            <span class="old-price">R$ 35,80</span>
+                            <span class="new-price">R$ 29,90</span>
+                        </div>
+                        <button class="btn-combo" data-combo="1">
+                            <i class="fas fa-shopping-cart"></i> Comprar Combo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Combo 2 -->
+                <div class="combo-card combo-featured">
+                    <div class="combo-header">
+                        <h3 class="combo-title">Combo Gangnam</h3>
+                        <div class="combo-tag">Melhor Custo</div>
+                    </div>
+                    <div class="combo-content">
+                        <ul class="combo-items">
+                            <li><i class="fas fa-check"></i> 2 Hot Dogs (qualquer sabor)</li>
+                            <li><i class="fas fa-check"></i> 2 Bebidas (refri 500ml)</li>
+                            <li><i class="fas fa-check"></i> 1 Porção de onion rings</li>
+                            <li><i class="fas fa-check"></i> 1 Sobremesa coreana</li>
+                        </ul>
+                        <div class="combo-price">
+                            <span class="old-price">R$ 58,90</span>
+                            <span class="new-price">R$ 49,90</span>
+                        </div>
+                        <button class="btn-combo" data-combo="2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Combo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Combo 3 -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3 class="combo-title">Combo Busan</h3>
+                        <div class="combo-tag">Para Grupos</div>
+                    </div>
+                    <div class="combo-content">
+                        <ul class="combo-items">
+                            <li><i class="fas fa-check"></i> 4 Hot Dogs (qualquer sabor)</li>
+                            <li><i class="fas fa-check"></i> 4 Bebidas (refri 500ml)</li>
+                            <li><i class="fas fa-check"></i> 2 Porções de batata</li>
+                            <li><i class="fas fa-check"></i> Molhos extras</li>
+                        </ul>
+                        <div class="combo-price">
+                            <span class="old-price">R$ 98,90</span>
+                            <span class="new-price">R$ 79,90</span>
+                        </div>
+                        <button class="btn-combo" data-combo="3">
+                            <i class="fas fa-shopping-cart"></i> Comprar Combo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="sobre-section" id="sobre">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre a Hot Coreia</h2>
+                <p class="section-subtitle">A fusão perfeita entre Brasil e Coreia</p>
+            </div>
+            
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <h3>Nossa História</h3>
+                    <p>A Hot Coreia nasceu da paixão pela culinária coreana e pelo clássico hot dog brasileiro. Unimos o melhor dos dois mundos para criar uma experiência única de sabores.</p>
+                    
+                    <h3>Diferenciais</h3>
+                    <ul class="diferenciais-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>Ingredientes autênticos:</strong> Importamos ingredientes diretamente da Coreia</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Receitas exclusivas:</strong> Desenvolvidas por chefs especializados</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Atendimento premium:</strong> Foco total na satisfação do cliente</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Ambiente temático:</strong> Decoração inspirada na cultura coreana</li>
+                    </ul>
+                    
+                    <div class="horario-funcionamento">
+                        <h3>Horário de Funcionamento</h3>
+                        <p><i class="far fa-clock"></i> Segunda a Sábado: 11h às 23h</p>
+                        <p><i class="far fa-clock"></i> Domingo: 12h às 22h</p>
+                    </div>
+                </div>
+                
+                <div class="sobre-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-store"></i>
+                        <p>Imagem da nossa loja</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section class="contato-section" id="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Faça seu Pedido</h2>
+                <p class="section-subtitle">Delivery ou retirada na loja</p>
+            </div>
+            
+            <div class="contato-content">
+                <div class="contato-info">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Endereço</h3>
+                        <p>Rua Coreia, 123 - Centro<br>São Paulo - SP</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Telefone</h3>
+                        <p>(11) 99999-9999</p>
+                        <p class="info-note">WhatsApp disponível</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Horário</h3>
+                        <p>Seg-Sáb: 11h-23h</p>
+                        <p>Dom: 12h-22h</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-motorcycle"></i>
+                        <h3>Delivery</h3>
+                        <p>Entregamos na região</p>
+                        <div class="delivery-apps">
+                            <span class="app-tag">iFood</span>
+                            <span class="app-tag">Uber Eats</span>
+                            <span class="app-tag">Rappi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contato-form">
+                    <h3>Pedido Rápido</h3>
+                    <form id="pedidoForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Seu WhatsApp" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Tipo de pedido</option>
+                                <option value="delivery">Delivery</option>
+                                <option value="retirada">Retirada na loja</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Detalhes do pedido (opcional)" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Enviar Pedido
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-hotdog"></i>
+                        <div class="logo-text">
+                            <h3>HOT COREIA</h3>
+                            <p>Hot Dogs Coreanos</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#combos">Combos</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-pagamento">
+                    <h4>Formas de Pagamento</h4>
+                    <div class="pagamento-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-pix"></i>
+                    </div>
+                </div>
+            </div>
+            
+
+    <div class="footer-bottom">
+        <p id="year"></p>
+      </div>
+    <style>
+  #year a {
+    color: inherit;          
+    text-decoration: none;   
+    font-weight: 500;        
+  }
+
+#year a:hover {
+  text-decoration: none;
+  color: #da23ff;               
+  }
+</style>
+    <script >
+document.addEventListener("DOMContentLoaded", () => {
+  const year = new Date().getFullYear();
+
+  // Pega a referência ao elemento <p id="year">
+  const footerEl = document.getElementById("year");
+
+  // Transforma cada dev em um link clicável
+  const devLinks = devs
+    .map(dev => `<a href="${dev.link}" target="_blank">${dev.name}</a>`)
+    .join(" e ");
+
+  // Define o texto final
+  footerEl.innerHTML = `© ${year} Hot Coreia - Todos os direitos reservados. | Desenvolvido por ${devLinks} para amantes de hot dog`;
+});
+</script>
+           <!-- <div class="footer-bottom">
+                <p>&copy; 2023 Hot Coreia - Todos os direitos reservados</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> para amantes de hot dog</p>
+            </div> -->
+        </div>
+    </footer>
+
+    <!-- Modal Carrinho -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-carrinho">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="carrinho-vazio" id="carrinhoVazio">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Seu carrinho está vazio</p>
+                    <p>Adicione itens do cardápio!</p>
+                </div>
+                <div class="carrinho-itens" id="carrinhoItens">
+                    <!-- Itens do carrinho serão adicionados aqui via JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="carrinho-total">
+                    <span>Total:</span>
+                    <span id="carrinhoTotal">R$ 0,00</span>
+                </div>
+                <button class="btn-finalizar" id="btnFinalizar">
+                    <i class="fas fa-check"></i> Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Finalizar Pedido -->
+    <div class="modal-overlay" id="finalizarOverlay">
+        <div class="modal-finalizar">
+            <div class="modal-header">
+                <h3><i class="fas fa-clipboard-check"></i> Finalizar Pedido</h3>
+                <button class="modal-close" id="finalizarClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="finalizarForm">
+                    <div class="tipo-pedido-group">
+                        <h4>Escolha a forma de receber seu pedido:</h4>
+                        <div class="tipo-pedido-options">
+                            <label class="tipo-pedido-option">
+                                <input type="radio" name="tipoPedido" value="retirada" checked>
+                                <div class="option-content">
+                                    <i class="fas fa-store"></i>
+                                    <div>
+                                        <h5>Retirada na Loja</h5>
+                                        <p>Venha buscar seu pedido</p>
+                                        <p class="option-note">Sem taxa adicional</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="tipo-pedido-option">
+                                <input type="radio" name="tipoPedido" value="entrega">
+                                <div class="option-content">
+                                    <i class="fas fa-motorcycle"></i>
+                                    <div>
+                                        <h5>Entrega</h5>
+                                        <p>Receba no conforto da sua casa</p>
+                                        <p class="option-note option-taxa">Taxa de entrega: R$ 2,00</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="dados-cliente">
+                        <h4>Seus dados:</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="nomeCliente" placeholder="Seu nome completo" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dados-entrega" id="dadosEntrega" style="display: none;">
+                        <h4>Endereço de entrega:</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="bairro" placeholder="Bairro" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="rua" placeholder="Rua/Avenida" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="number" id="numero" placeholder="Número" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="complemento" placeholder="Complemento (opcional)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="pontoReferencia" placeholder="Ponto de referência (opcional)">
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-pedido">
+                        <h4>Resumo do pedido:</h4>
+                        <div id="resumoItens"></div>
+                        <div class="resumo-total">
+                            <div class="resumo-linha">
+                                <span>Subtotal:</span>
+                                <span id="resumoSubtotal">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-linha taxa-entrega" id="taxaEntrega" style="display: none;">
+                                <span>Taxa de entrega:</span>
+                                <span>R$ 2,00</span>
+                            </div>
+                            <div class="resumo-linha total-final">
+                                <strong>Total:</strong>
+                                <strong id="resumoTotal">R$ 0,00</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-confirmar-pedido">
+                        <i class="fas fa-check-circle"></i> Confirmar Pedido
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
