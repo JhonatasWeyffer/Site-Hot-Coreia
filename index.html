@@ -429,20 +429,20 @@
                     <div class="info-card">
                         <i class="fas fa-map-marker-alt"></i>
                         <h3>Endereço</h3>
-                        <p>Rua Coreia, 123 - Centro<br>São Paulo - SP</p>
+                        <p>Tv curió, 55 -  São João do Miriti<br>Manacapuru - AM</p>
                     </div>
                     
                     <div class="info-card">
                         <i class="fas fa-phone"></i>
                         <h3>Telefone</h3>
-                        <p>(11) 99999-9999</p>
+                        <p>(92) 98549-6277</p>
                         <p class="info-note">WhatsApp disponível</p>
                     </div>
                     
                     <div class="info-card">
                         <i class="fas fa-clock"></i>
                         <h3>Horário</h3>
-                        <p>Seg-Sáb: 11h-23h</p>
+                        <p>Seg-Sáb: 12h-17h</p>
                         <p>Dom: 12h-22h</p>
                     </div>
                     
@@ -451,34 +451,22 @@
                         <h3>Delivery</h3>
                         <p>Entregamos na região</p>
                         <div class="delivery-apps">
-                            <span class="app-tag">iFood</span>
-                            <span class="app-tag">Uber Eats</span>
-                            <span class="app-tag">Rappi</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contato-form">
-                    <h3>Pedido Rápido</h3>
-                    <form id="pedidoForm">
+                    <h3>Dúvidas no cardapio?</h3>
+                    <form id="duvidaForm">
                         <div class="form-group">
                             <input type="text" placeholder="Seu nome" required>
                         </div>
+
                         <div class="form-group">
-                            <input type="tel" placeholder="Seu WhatsApp" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option value="">Tipo de pedido</option>
-                                <option value="delivery">Delivery</option>
-                                <option value="retirada">Retirada na loja</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Detalhes do pedido (opcional)" rows="3"></textarea>
+                            <textarea placeholder="Quais suas dúvidas?" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn-submit">
-                            <i class="fas fa-paper-plane"></i> Enviar Pedido
+                            <i class="fas fa-paper-plane"></i> Enviar Dúvida
                         </button>
                     </form>
                 </div>
@@ -492,16 +480,15 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <div class="logo">
-                        <i class="fas fa-hotdog"></i>
                         <div class="logo-text">
                             <h3>HOT COREIA</h3>
                             <p>Hot Dogs Coreanos</p>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/hot_coreia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=551192985496277&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido!" target=`,><i class="fab fa-whatsapp"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
@@ -520,9 +507,8 @@
                 <div class="footer-pagamento">
                     <h4>Formas de Pagamento</h4>
                     <div class="pagamento-icons">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fas fa-credit-card"></i>
+                        <i class="fas fa-money-bill-wave"></i>
                         <i class="fab fa-pix"></i>
                     </div>
                 </div>
@@ -657,9 +643,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="form-group">
                                 <input type="number" id="numero" placeholder="Número" required>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="complemento" placeholder="Complemento (opcional)">
-                            </div>
                         </div>
                         <div class="form-group">
                             <input type="text" id="pontoReferencia" placeholder="Ponto de referência (opcional)">
@@ -669,11 +652,49 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="resumo-pedido">
                         <h4>Resumo do pedido:</h4>
                         <div id="resumoItens"></div>
+                                                    <span>Subtotal:</span>
+                            <span id="resumoSubtotal">R$ 0,00</span>
                         <div class="resumo-total">
                             <div class="resumo-linha">
-                                <span>Subtotal:</span>
-                                <span id="resumoSubtotal">R$ 0,00</span>
-                            </div>
+                                                        <!-- Seção Forma de Pagamento -->
+<div class="forma-pagamento">
+    <h4>Forma de Pagamento:</h4>
+    <div class="pagamento-options">
+        <label class="pagamento-option">
+            <input type="radio" name="formaPagamento" value="pix" checked>
+            <div class="option-content">
+                <i class="fas fa-qrcode"></i>
+                <div>
+                    <h5>PIX</h5>
+                    <p>Pagamento instantâneo</p>
+                </div>
+            </div>
+        </label>
+        
+        <label class="pagamento-option">
+            <input type="radio" name="formaPagamento" value="cartao">
+            <div class="option-content">
+                <i class="fas fa-credit-card"></i>
+                <div>
+                    <h5>Cartão</h5>
+                    <p>Débito ou Crédito</p>
+                </div>
+            </div>
+        </label>
+        
+        <label class="pagamento-option">
+            <input type="radio" name="formaPagamento" value="dinheiro">
+            <div class="option-content">
+                <i class="fas fa-money-bill-wave"></i>
+                <div>
+                    <h5>Dinheiro</h5>
+                    <p>Pagamento na entrega/retirada</p>
+                </div>
+            </div>
+        </label>
+    </div>
+</div>
+                            </div>                                
                             <div class="resumo-linha taxa-entrega" id="taxaEntrega" style="display: none;">
                                 <span>Taxa de entrega:</span>
                                 <span>R$ 2,00</span>
@@ -695,4 +716,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <script src="script.js"></script>
 </body>
-</html>
+</html>fv

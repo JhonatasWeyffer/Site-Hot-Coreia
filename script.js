@@ -104,7 +104,7 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const cardapioItems = document.querySelectorAll('.cardapio-item');
 const btnAdds = document.querySelectorAll('.btn-add');
 const comboBtns = document.querySelectorAll('.btn-combo');
-const pedidoForm = document.getElementById('pedidoForm');
+const duvidaForm = document.getElementById('duvidaForm');
 
 // Elementos do modal de finalização
 const finalizarOverlay = document.getElementById('finalizarOverlay');
@@ -317,7 +317,7 @@ function atualizarCarrinho() {
                 <div class="carrinho-item-quantidade">
                     <button class="btn-diminuir" data-id="${item.id}">-</button>
                     <span>${item.quantidade}</span>
-                    <button class="btn-aumentar" data-id="${item.id}">+</button>
+                    <button class="btn-aumentar" data-id="${item.id}" ${item.quantidade >= 99 ? "disabled" : ""}>+</button>
                 </div>
                 <button class="carrinho-item-remover" data-id="${item.id}">
                     <i class="fas fa-trash"></i>
@@ -369,12 +369,32 @@ function abrirModalFinalizacao() {
     dadosEntrega.style.display = 'none';
     taxaEntrega.style.display = 'none';
     
+    // Por padrão, selecionar PIX
+    const pixOption = document.querySelector('input[name="formaPagamento"][value="pix"]');
+    if (pixOption) {
+        pixOption.checked = true;
+    }
+    
     // Atualizar resumo
     atualizarResumoPedido();
     
     // Mostrar modal
     finalizarOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+}
+
+// Função para obter texto da forma de pagamento
+function getFormaPagamentoTexto(valor) {
+    switch(valor) {
+        case 'pix':
+            return 'PIX';
+        case 'cartao':
+            return 'Cartão (débito/crédito)';
+        case 'dinheiro':
+            return 'Dinheiro (com troco)';
+        default:
+            return valor;
+    }
 }
 
 // Atualizar resumo do pedido
@@ -410,7 +430,7 @@ function atualizarResumoPedido() {
     // Atualizar subtotal
     resumoSubtotal.textContent = `R$ ${subtotal.toFixed(2)}`;
     
-    // Calcular total (subtotal + taxa se for entrega)
+    // Calcular total (subtotal + taxa)
     const taxa = document.querySelector('input[name="tipoPedido"]:checked').value === 'entrega' ? 2 : 0;
     const total = subtotal + taxa;
     
@@ -458,17 +478,24 @@ tipoPedidoRadios.forEach(radio => {
     });
 });
 
+// Atualizar resumo quando mudar forma de pagamento
+document.querySelectorAll('input[name="formaPagamento"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        atualizarResumoPedido();
+    });
+});
+
 // Submeter formulário de finalização
 finalizarForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const tipoPedido = document.querySelector('input[name="tipoPedido"]:checked').value;
     const nome = document.getElementById('nomeCliente').value;
-    const telefone = document.getElementById('telefoneCliente').value;
+    const formaPagamento = document.querySelector('input[name="formaPagamento"]:checked').value;
     
     // Validação básica
-    if (!nome || !telefone) {
-        mostrarNotificacao('Por favor, preencha seu nome e telefone!', 'warning');
+    if (!nome) {
+        mostrarNotificacao('Por favor, preencha seu nome!', 'warning');
         return;
     }
     
@@ -483,50 +510,61 @@ finalizarForm.addEventListener('submit', (e) => {
         }
     }
     
-    let mensagemWhatsApp = `*🍢 NOVO PEDIDO - HOT COREIA 🍢*\n\n`;
+    // Calcular totais
+    let subtotal = 0;
+    carrinho.forEach(item => {
+        subtotal += item.preco * item.quantidade;
+    });
+    
+    let total = subtotal;
+    if (tipoPedido === 'entrega') {
+        total += 2;
+    }
+    
+    let mensagemWhatsApp = `*🍢 NOVO PEDIDO - HOT COREIA*\n\n`;
     mensagemWhatsApp += `*👤 Cliente:* ${nome}\n`;
-    mensagemWhatsApp += `*📱 WhatsApp:* ${telefone}\n`;
-    mensagemWhatsApp += `*📦 Tipo:* ${tipoPedido === 'entrega' ? '🚚 Entrega' : '🏪 Retirada na Loja'}\n\n`;
+    mensagemWhatsApp += `*🏍️ Tipo:* ${tipoPedido === 'entrega' ? ' Entrega' : ' Retirada na Loja'}\n`;
+    mensagemWhatsApp += `*💳 Pagamento:* ${getFormaPagamentoTexto(formaPagamento)}\n\n`;
     
     if (tipoPedido === 'entrega') {
         const bairro = document.getElementById('bairro').value;
         const rua = document.getElementById('rua').value;
         const numero = document.getElementById('numero').value;
-        const complemento = document.getElementById('complemento').value;
         const pontoReferencia = document.getElementById('pontoReferencia').value;
         
         mensagemWhatsApp += `*📍 ENDEREÇO DE ENTREGA*\n`;
-        mensagemWhatsApp += `🏘️ Bairro: ${bairro}\n`;
-        mensagemWhatsApp += `🛣️ Rua: ${rua}, ${numero}\n`;
-        if (complemento) mensagemWhatsApp += `🏠 Complemento: ${complemento}\n`;
-        if (pontoReferencia) mensagemWhatsApp += `📍 Ponto de referência: ${pontoReferencia}\n`;
+        mensagemWhatsApp += `Bairro: ${bairro}\n`;
+        mensagemWhatsApp += `Rua: ${rua}, Nº ${numero}\n`;
+        if (pontoReferencia) mensagemWhatsApp += `Ponto de referência: ${pontoReferencia}\n`;
         mensagemWhatsApp += `\n`;
     }
     
     mensagemWhatsApp += `*📝 ITENS DO PEDIDO*\n`;
     
-    let total = 0;
     carrinho.forEach(item => {
         const itemTotal = item.preco * item.quantidade;
-        total += itemTotal;
-        mensagemWhatsApp += `🍽️ ${item.quantidade}x ${item.nome} - R$ ${itemTotal.toFixed(2)}\n`;
+        mensagemWhatsApp += `${item.quantidade}x ${item.nome} - R$ ${itemTotal.toFixed(2)}\n`;
     });
     
+    mensagemWhatsApp += `\n*💰 RESUMO DO PEDIDO*\n`;
+    mensagemWhatsApp += `Subtotal: R$ ${subtotal.toFixed(2)}\n`;
+    
     if (tipoPedido === 'entrega') {
-        total += 2;
-        mensagemWhatsApp += `🚚 Taxa de entrega: R$ 2,00\n`;
+        mensagemWhatsApp += `Taxa de entrega: R$ 2,00\n`;
     }
     
-    mensagemWhatsApp += `\n*💰 TOTAL: R$ ${total.toFixed(2)}*\n\n`;
-    mensagemWhatsApp += `*💳 FORMA DE PAGAMENTO:*\nA combinar com o cliente\n\n`;
+    mensagemWhatsApp += `*TOTAL: R$ ${total.toFixed(2)}*\n\n`;
     mensagemWhatsApp += `_📱 Pedido feito através do site Hot Coreia_`;
     
     // Codificar mensagem para URL do WhatsApp
     const mensagemCodificada = encodeURIComponent(mensagemWhatsApp);
-    const numeroWhatsApp = '5511999999999'; // Substitua pelo número real
+    const numeroWhatsApp = '551192985419002'; 
     
     // Abrir WhatsApp
-    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`, '_blank');
+    window.open(
+  `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`,
+  '_blank'
+);
     
     // Mostrar confirmação
     mostrarNotificacao('Pedido enviado! Abrindo WhatsApp para confirmação...', 'success');
@@ -542,21 +580,32 @@ finalizarForm.addEventListener('submit', (e) => {
     document.body.style.overflow = 'auto';
 });
 
-// Enviar formulário de pedido rápido
-pedidoForm.addEventListener('submit', (e) => {
+duvidaForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const formData = new FormData(pedidoForm);
-    const nome = pedidoForm.querySelector('input[type="text"]').value;
-    const telefone = pedidoForm.querySelector('input[type="tel"]').value;
-    
-    if (!nome || !telefone) {
-        mostrarNotificacao('Por favor, preencha seu nome e telefone!', 'warning');
+
+    const nome = duvidaForm.querySelector('input[type="text"]').value;
+    const mensagem = duvidaForm.querySelector('textarea').value;
+
+    if (!nome || !mensagem) {
+        mostrarNotificacao('Por favor, preencha seu nome e a dúvida!', 'warning');
         return;
     }
-    
-    mostrarNotificacao(`Pedido rápido enviado! Em breve entraremos em contato no WhatsApp: ${telefone}`, 'success');
-    pedidoForm.reset();
+
+    let mensagemWhatsApp = `🍢 *DÚVIDA NO CARDÁPIO - HOT COREIA*\n\n`;
+    mensagemWhatsApp += `👤 Nome: ${nome}\n\n`;
+    mensagemWhatsApp += `💬 Dúvida:\n${mensagem}\n\n`;
+    mensagemWhatsApp += `_📱 Mensagem enviada pelo site Hot Coreia_`;
+
+    const numeroWhatsApp = '551192985419002'; 
+    const texto = encodeURIComponent(mensagemWhatsApp);
+
+    window.open(
+        `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`,
+        '_blank'
+    );
+
+    mostrarNotificacao('Dúvida enviada! Abrindo WhatsApp...', 'success');
+    duvidaForm.reset();
 });
 
 // Mostrar notificação
@@ -673,10 +722,24 @@ window.addEventListener('DOMContentLoaded', () => {
         item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(item);
     });
+    
+    // Atualizar footer com nome dos desenvolvedores
+    const year = new Date().getFullYear();
+    const footerEl = document.getElementById('year');
+    
+    const devs = [
+        { name: "Desenvolvedor 1", link: "#" },
+        { name: "Desenvolvedor 2", link: "#" }
+    ];
+    
+    const devLinks = devs
+        .map(dev => `<a href="${dev.link}" target="_blank">${dev.name}</a>`)
+        .join(" e ");
+    
+    footerEl.innerHTML = `© ${year} Hot Coreia - Todos os direitos reservados. | Desenvolvido por ${devLinks} para amantes de hot dog`;
 });
 
-
-
 const devs = [
-  { name: "", link: "" },
+    { name: "Desenvolvedor 1", link: "#" },
+    { name: "Desenvolvedor 2", link: "#" }
 ];
