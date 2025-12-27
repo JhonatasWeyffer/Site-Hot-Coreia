@@ -625,7 +625,7 @@ function mostrarNotificacao(mensagem, tipo = 'success') {
     // Estilos da notificação
 notificacao.style.cssText = `
     position: fixed;
-    top: 100px;
+    top: 95px;
     right: 10px;
     background: ${tipo === 'success' ? '#4CAF50' : '#FF9800'};
     color: white;
@@ -636,6 +636,7 @@ notificacao.style.cssText = `
     display: flex;
     align-items: center;
     gap: ${window.innerWidth <= 400 ? '15px' : '10px'};
+    top: ${window.innerWidth <= 400 ? '75px' : '95px'};
 
     font-size: ${window.innerWidth <= 400 ? '13px' : '15px'};
     line-height: 1.3;
@@ -646,6 +647,7 @@ notificacao.style.cssText = `
 
     width: fit-content;
     max-width: ${window.innerWidth <= 768 ? 'min(85vw, 320px)' : '400px'};
+    top: ${window.innerWidth <= 768 ? '75px' : '95px'};
 
     white-space: normal;
     word-break: break-word;
