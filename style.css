@@ -93,6 +93,7 @@ body {
     display: flex;
     list-style: none;
     gap: 25px;
+    padding-right: 20px;
 }
 
 .nav-link {
@@ -119,6 +120,25 @@ body {
     background: var(--primary);
     border-radius: 2px;
 }
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+
 
 /* Botões */
 .btn {
@@ -1389,22 +1409,30 @@ body {
 }
 
 @media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        background: var(--light);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-        z-index: 999;
-    }
+.nav-menu {
+    position: fixed;
+    /*top: 70px;*/
+    left: 0;
+    width: 100%;
+    
+    /* animação de cima para baixo */
+    transform: translateY(-120%);
+    opacity: 0;
+    
+    background: rgba(255, 255, 255, 0.285); /* transparente */
+    backdrop-filter: blur(8px);           /* efeito vidro */
+    
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    z-index: 999;
+  }
     
     .nav-menu.active {
-        left: 0;
+    left: 0;
+    transform: translateY(0);
+    opacity: 1;
     }
     
     .nav-links {
@@ -1492,3 +1520,10 @@ body {
         opacity: 0;
     }
 }
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

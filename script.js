@@ -739,6 +739,15 @@ window.addEventListener('DOMContentLoaded', () => {
     footerEl.innerHTML = `© ${year} Hot Coreia - Todos os direitos reservados. | Desenvolvido por ${devLinks} para amantes de hot dog`;
 });
 
+function ajustarMenuMobile() {
+    const header = document.querySelector('.header');
+    navMenu.style.top = header.offsetHeight + 'px';
+}
+
+window.addEventListener('load', ajustarMenuMobile);
+window.addEventListener('resize', ajustarMenuMobile);
+
+
 const devs = [
     { name: "Desenvolvedor 1", link: "#" },
     { name: "Desenvolvedor 2", link: "#" }
