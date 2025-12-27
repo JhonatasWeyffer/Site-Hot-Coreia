@@ -623,23 +623,34 @@ function mostrarNotificacao(mensagem, tipo = 'success') {
     `;
     
     // Estilos da notificação
-    notificacao.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${tipo === 'success' ? '#4CAF50' : '#FF9800'};
-        color: white;
-        padding: 15px 20px;
-        border-radius: var(--border-radius);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        z-index: 3000;
-        box-shadow: var(--shadow);
-        animation: slideIn 0.3s ease;
-        max-width: 400px;
-    `;
-    
+notificacao.style.cssText = `
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    background: ${tipo === 'success' ? '#4CAF50' : '#FF9800'};
+    color: white;
+
+    padding: ${window.innerWidth <= 400 ? '8px 12px' : '15px 20px'};
+    border-radius: var(--border-radius);
+
+    display: flex;
+    align-items: center;
+    gap: ${window.innerWidth <= 400 ? '15px' : '10px'};
+
+    font-size: ${window.innerWidth <= 400 ? '13px' : '15px'};
+    line-height: 1.3;
+
+    z-index: 3000;
+    box-shadow: var(--shadow);
+    animation: slideIn 0.4s ease;
+
+    width: fit-content;
+    max-width: ${window.innerWidth <= 768 ? 'min(85vw, 320px)' : '400px'};
+
+    white-space: normal;
+    word-break: break-word;
+`;
+
     // Adicionar ao body
     document.body.appendChild(notificacao);
     
@@ -748,7 +759,3 @@ window.addEventListener('load', ajustarMenuMobile);
 window.addEventListener('resize', ajustarMenuMobile);
 
 
-const devs = [
-    { name: "Desenvolvedor 1", link: "#" },
-    { name: "Desenvolvedor 2", link: "#" }
-];

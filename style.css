@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .logo {
@@ -70,7 +70,7 @@ body {
     width: 20px;
 }
 
-.logo-text h1 {
+.logo-text h1, .logo-text-footer h1{
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
@@ -78,7 +78,7 @@ body {
     line-height: 1;
 }
 
-.logo-text p {
+.logo-text p, .logo-text-footer p{
     font-size: 0.8rem;
     color: var(--gray-dark);
 }
@@ -438,7 +438,7 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: px solid transparent;
 }
 
 .combo-card:hover {
@@ -465,8 +465,8 @@ body {
 
 .combo-tag {
     position: absolute;
-    top: -10px;
-    right: 20px;
+    top: 13px;
+    right: 8px;
     background: var(--primary);
     color: var(--light);
     padding: 5px 15px;
@@ -758,15 +758,15 @@ body {
     margin-bottom: 40px;
 }
 
-.footer-logo .logo {
+.footer-logo {
     margin-bottom: 20px;
 }
 
-.footer-logo .logo-text h3 {
+.footer-logo, .logo-text-footer h3 {
     color: var(--light);
 }
 
-.footer-logo .logo-text p {
+.footer-logo, .logo-text-footer p {
     color: #aaa;
 }
 
@@ -852,6 +852,10 @@ body {
 
 .footer-bottom i {
     color: var(--primary);
+}
+
+.footer-brand {
+  margin-bottom: 20px;
 }
 
 /* Modal Carrinho */
@@ -1409,64 +1413,94 @@ body {
 }
 
 @media (max-width: 768px) {
-.nav-menu {
+    .footer-brand {
+        margin-top: -30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+  .logo-text-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  } 
+
+  .nav-menu {
     position: fixed;
-    /*top: 70px;*/
+    top: 70px; /* importante pra descer do header */
     left: 0;
     width: 100%;
-    
-    /* animação de cima para baixo */
+
+    /* estado fechado */
     transform: translateY(-120%);
     opacity: 0;
-    
-    background: rgba(255, 255, 255, 0.285); /* transparente */
-    backdrop-filter: blur(8px);           /* efeito vidro */
-    
+    pointer-events: none;
+
+    background: rgba(255, 255, 255, 0.285);
+    backdrop-filter: blur(8px);
+
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: 20px;
+
     box-shadow: var(--shadow);
     z-index: 999;
+
+    /* 🔥 AQUI ESTÁ A ANIMAÇÃO */
+    transition:
+      transform 0.4s ease,
+      opacity 0.3s ease;
   }
-    
-    .nav-menu.active {
-    left: 0;
+
+  .nav-menu.active {
     transform: translateY(0);
     opacity: 1;
-    }
-    
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .menu-toggle {
-        display: block;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-    
-    .contato-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .contato-info {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .pagamento-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1527,3 +1561,50 @@ body {
   justify-content: space-between;
 }
 
+/* ===== TELAS MUITO PEQUENAS (até 467px) ===== */
+@media (max-width: 467px) {
+
+  /* Logo */
+  .logo {
+    gap: 6px;
+  }
+
+  .logo-icon img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo-text h1, .logo-text-footer h1{
+    font-size: 14px;
+  }
+
+  .logo-text p, .logo-text-footer p{
+    font-size: 9px;
+  }
+
+  /* Botão pedido */
+  .btn-pedido {
+    padding: 6px 8px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .btn-pedido span {
+    font-size: 10PX;
+  }
+
+  .btn-pedido i {
+    font-size: 16px;
+  }
+
+  .cart-count {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+
+  /* Botão hamburguer */
+
+  .menu-toggle i {
+    font-size: 22px;
+  }
+}
