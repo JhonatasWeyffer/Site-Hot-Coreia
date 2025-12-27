@@ -1432,6 +1432,7 @@ body {
     top: 70px; /* importante pra descer do header */
     left: 0;
     width: 100%;
+    z-index: 900;
 
     /* estado fechado */
     transform: translateY(-120%);
@@ -1447,7 +1448,6 @@ body {
     padding: 20px;
 
     box-shadow: var(--shadow);
-    z-index: 999;
 
     /* 🔥 AQUI ESTÁ A ANIMAÇÃO */
     transition:

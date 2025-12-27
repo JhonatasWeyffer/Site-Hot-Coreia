@@ -550,7 +550,7 @@ finalizarForm.addEventListener('submit', (e) => {
     mensagemWhatsApp += `Subtotal: R$ ${subtotal.toFixed(2)}\n`;
     
     if (tipoPedido === 'entrega') {
-        mensagemWhatsApp += `Taxa de entrega: R$ 2,00\n`;
+        mensagemWhatsApp += `Taxa de entrega: R$ 2.00\n`;
     }
     
     mensagemWhatsApp += `*TOTAL: R$ ${total.toFixed(2)}*\n\n`;
